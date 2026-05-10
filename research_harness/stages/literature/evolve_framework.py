@@ -68,6 +68,35 @@ def evolve_framework(framework_json: str, papers_json: str,
     - If `deltas` is empty, `new_framework` equals the input framework.
     - The orchestrator already persists state — do NOT write extra files.
 
+    Taxonomy design axioms — re-check these every revision; conservatism
+    does NOT excuse keeping a structurally broken tree:
+
+    1. SEPARATE METHOD AXES FROM CROSS-CUTTING CONCERNS.
+       Root-level children split into (a) orthogonal METHOD DESIGN AXES
+       (the choices a practitioner makes — source / granularity / objective
+       / data-collection / etc.) and (b) CROSS-CUTTING concerns (theory,
+       shared infrastructure, failure modes). They cannot share a level.
+       If the current tree mixes them at the root, propose a `merge` /
+       `split` / restructuring delta to fix it.
+
+    2. SAME-LEVEL ABSTRACTION CONSISTENCY.
+       Children of one parent must answer the same question. If they don't,
+       restructure (merge mismatched siblings under a new umbrella, or
+       move them under the parent they actually belong to).
+
+    3. NO SIBLING OVERLAP.
+       If a paper would naturally land under two sibling nodes, those
+       siblings are not orthogonal. Propose a `merge`. The clearest signal
+       is: a single paper's contribution_summary maps to multiple sibling
+       paths in `paper_relocations`. That is the trigger to consolidate,
+       not to file the paper twice.
+
+    4. NO STARVED OR EMPTY NODES.
+       A leaf with 0 papers AND no direct survey TOC entry → propose
+       `drop`. A leaf with 1-2 papers and no survey TOC carve-out →
+       propose `merge` into its parent or a broader sibling. Do not keep
+       nodes solely to signal "this sub-area exists in principle".
+
     Args:
         framework_json:  Current framework tree.
         papers_json:     All annotated papers (including orphans).

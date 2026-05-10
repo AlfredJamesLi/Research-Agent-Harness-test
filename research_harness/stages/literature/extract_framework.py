@@ -57,6 +57,45 @@ def extract_framework(direction: str, surveys_json: str,
       You do not need to output paths; consumers derive them from the tree.
     - The orchestrator already persists state — do NOT write extra files.
 
+    Taxonomy design axioms (these override the "merge surveys' TOCs" instinct
+    when surveys themselves are messy):
+
+    1. SEPARATE METHOD AXES FROM CROSS-CUTTING CONCERNS.
+       Root-level children must split into two groups:
+       (a) orthogonal METHOD DESIGN AXES — the choices a practitioner makes
+           when instantiating a method in this field (e.g. for on-policy
+           correction: who provides the correction, at what granularity,
+           with what training objective, via what data-collection loop).
+       (b) CROSS-CUTTING concerns — theoretical foundations, shared
+           infrastructure (e.g. process reward models), failure modes.
+       Do NOT mix these at the same level. Method axes go under one parent
+       (e.g. "Method design space"); cross-cutting concerns go under
+       siblings of that parent. A reader should be able to tell, from the
+       structure, which children are "ways to build the method" and which
+       are "things that surround the method".
+
+    2. SAME-LEVEL ABSTRACTION CONSISTENCY.
+       Children of a single parent must be at the same conceptual level.
+       Do not pair "Theoretical Foundations" with "Step-Level Correction":
+       one is a meta-level concern, the other is a value of a design axis.
+       If you cannot describe siblings with a single sentence of the form
+       "all children of X are values of Y", the tree is wrong.
+
+    3. NO OVERLAP BETWEEN SIBLING NODES.
+       If a paper would naturally land in two sibling nodes, those nodes
+       are not orthogonal — they MUST be merged or restructured. For
+       example: do NOT keep "Step-Level Correction" (under granularity)
+       and "Process Supervision and Step-Level Signal" (as a separate
+       branch) as parallel root children, because every PRM paper belongs
+       to both. Pick one home; cross-reference from the other.
+
+    4. NO STARVED OR EMPTY NODES.
+       A leaf with 0 papers AND no direct survey TOC entry must be omitted.
+       A leaf with only 1-2 papers should be merged into its parent or a
+       broader sibling unless surveys explicitly carve it out as its own
+       branch. The taxonomy is for organizing real evidence, not for
+       displaying completeness.
+
     Args:
         direction:               User's research direction (root of the tree).
         surveys_json:            JSON array of surveys in state (with toc + key_claims).
