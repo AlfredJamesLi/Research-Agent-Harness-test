@@ -41,51 +41,97 @@ export ANTHROPIC_API_KEY=sk-...
 export OPENAI_API_KEY=sk-...
 ```
 
-### 3. Use
+### 3. Use — two CLI entry points
 
-**CLI:**
+**`research-harness`** is the top-level autonomous agent. The LLM picks stages, picks functions, runs the full pipeline.
 
 ```bash
-# Basic: Claude does everything
-research-harness "Survey recent work on LLM uncertainty"
+# Autonomous: pick stages and functions to satisfy the task
+research-harness --work-dir /abs/path "Survey recent work on LLM uncertainty"
 
-# Cross-model review: Claude writes, GPT reviews (ARIS design)
-research-harness "Review the paper at ./my-project/" \
-    --provider claude-code \
-    --review-provider codex
+# Cross-model: Claude writes, Codex/GPT reviews
+research-harness --work-dir /abs/path --provider claude-code --review-provider openai-codex \
+    "Review the paper at ./my-project/"
 
-# List all available functions
-research-harness --list
+# List all 48+ registered functions
+research-harness --work-dir /tmp --list
 ```
 
-**In Python:**
+**`research-review`** is the focused paper-review CLI. One paper in, one structured review JSON out.
+
+```bash
+# Peer mode (default): one venue-form review of someone else's paper
+research-review paper.pdf --venue NeurIPS -o review.json
+
+# Humanize an existing draft (preserves score / verdict / observations)
+research-review paper.pdf --venue "ACM MM" --draft my_draft.md -o review.json
+
+# Revise mode: multi-round ARIS-style review-fix loop on your own paper
+research-review paper.pdf --venue NeurIPS --mode revise --auto-fix --max-rounds 4
+```
+
+Defaults: provider `auto`, review provider `openai-codex` (gpt-5.5), output stdout. Run `research-review --help` for the full flag set.
+
+### 4. Use the skills (Claude Code / opencode)
+
+Three skills ship with this repo and depend on the `research-review` CLI installed by step 1.
+
+| Skill | What it does | Backing CLI |
+|---|---|---|
+| `/peer-review` | Venue-form review of someone else's paper, prose humanized for AI-detection | `research-review paper.pdf --venue X -o out.json` |
+| `/humanize-paper-review` | Take an existing review draft, rewrite prose to pass AI-detection, preserve judgment | `research-review paper.pdf --venue X --draft draft.md -o out.json` |
+| `/self-review` | Harsh self-critique of your own paper (no detector concern, no humanization) | Pure prompt, no CLI |
+| `/gptzero-check` | Run GPTZero on a review file via Chrome CDP | `python -m research_harness.stages.external.gptzero_check ...` |
+
+**Install the skills (one time)**:
+
+```bash
+# symlink (Mac / Linux)
+ln -s "$(pwd)/skills/peer-review"            ~/.claude/skills/peer-review
+ln -s "$(pwd)/skills/humanize-paper-review"  ~/.claude/skills/humanize-paper-review
+ln -s "$(pwd)/skills/self-review"            ~/.claude/skills/self-review
+ln -s "$(pwd)/skills/gptzero-check"          ~/.claude/skills/gptzero-check
+```
+
+For opencode, replace `~/.claude/skills/` with `~/.config/opencode/skills/`.
+
+**Usage in Claude Code / opencode**:
+
+```
+> /peer-review paper.pdf venue=NeurIPS
+> /humanize-paper-review paper.pdf draft=my_draft.md venue="ACM MM"
+> /self-review my_paper.tex
+> /gptzero-check review.md
+```
+
+The skill triggers Claude (or whichever model is running) to invoke the right CLI command via Bash. All the heavy lifting (codex prose generation under real-human sentence templates, paper-grounding, structured JSON via tool-use schema) happens in the Python CLI — the skill is a thin shim that knows which command to run.
+
+**In Python**:
 
 ```python
-from research_harness.main import research_agent, _create_runtime
+from research_harness.review import review
 
-# Single model
-rt = _create_runtime(provider="claude-code")
+# Peer mode
+result = review("paper.pdf", venue="NeurIPS")
+
+# Humanize an existing draft
+result = review("paper.pdf", venue="ACM MM", draft="my_draft.md")
+
+# Self / revise mode (multi-round ARIS loop)
+result = review("paper.pdf", venue="NeurIPS", mode="revise",
+                max_rounds=4, auto_fix=True)
+```
+
+For the autonomous agent:
+
+```python
+from research_harness.main import research_agent
+from openprogram.providers import create_runtime
+
+rt = create_runtime(provider="claude-code")
+rt.set_workdir("/abs/path/to/work-dir")
 result = research_agent(task="Survey LLM uncertainty", runtime=rt)
-
-# Cross-model review: Claude executor + Codex/GPT reviewer
-exec_rt = _create_runtime(provider="claude-code")
-review_rt = _create_runtime(provider="codex")
-result = research_agent(
-    task="Review the paper at ./my-project/ as EMNLP reviewer",
-    runtime=exec_rt,
-    review_runtime=review_rt,
-)
 ```
-
-**In Claude Code / Cursor (via skills):**
-
-```
-> /agentic-research "Survey recent work on LLM uncertainty and identify gaps"
-> /agentic-research "Review paper/ as a NeurIPS reviewer with difficulty: nightmare"
-> /agentic-research "Polish this paragraph for NeurIPS: <text>"
-```
-
-> **Side note**: this repo also ships three stand-alone skills for peer review — `self-paper-review` (critique your own paper), `official-paper-review` (write a humanized venue-form review of someone else's paper), and `humanize-paper-review` (humanize an existing LLM-generated review draft) — with a one-line cross-platform installer for Claude Code / opencode users. See [research_harness/stages/review/README.md](research_harness/stages/review/README.md).
 
 ## Architecture
 
@@ -193,7 +239,6 @@ The key design from ARIS: difficulty controls **information asymmetry**. In medi
 
 - All leaf functions include a `# Persistence` prompt: the agent saves complete output to files and returns a summary.
 - `AUTO_REVIEW.md` — cumulative review log with full raw reviewer responses, debate transcripts.
-- Operation log (`--log path`) — append-only markdown log of all stage/step decisions.
 - Results are saved to the **target project directory** (the agent infers the path from the task description).
 
 ## All Functions (48+)

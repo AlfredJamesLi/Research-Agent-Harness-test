@@ -8,3 +8,20 @@ dist/
 build/
 .pytest_cache/
 .DS_Store
+
+# Tooling cache
+.openprogram/
+
+# Generated research artifacts at repo root (keep README/SKILL)
+/*.md
+/*.tex
+!/README.md
+!/SKILL.md
+
+# Result directories from past runs
+/auto_review/
+/experiment_results/
+/idea_results/
+/literature_results/
+/test/
+/test_research_project/

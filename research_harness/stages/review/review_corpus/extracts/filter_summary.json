@@ -1,0 +1,112 @@
+{
+  "total": 57,
+  "scored": 54,
+  "skipped_short": 3,
+  "scored_failures": 0,
+  "human_kept": 52,
+  "ai_dropped": 1,
+  "mixed_dropped": 1,
+  "buckets": {
+    "COLM/2024": {
+      "total": 4,
+      "human": 4,
+      "ai": 0,
+      "mixed": 0,
+      "short": 0,
+      "errors": 0
+    },
+    "ICLR/2021": {
+      "total": 0,
+      "human": 0,
+      "ai": 0,
+      "mixed": 0,
+      "short": 0,
+      "errors": 0
+    },
+    "ICLR/2022": {
+      "total": 15,
+      "human": 15,
+      "ai": 0,
+      "mixed": 0,
+      "short": 0,
+      "errors": 0
+    },
+    "ICLR/2023": {
+      "total": 0,
+      "human": 0,
+      "ai": 0,
+      "mixed": 0,
+      "short": 0,
+      "errors": 0
+    },
+    "ICLR/2024": {
+      "total": 16,
+      "human": 13,
+      "ai": 1,
+      "mixed": 0,
+      "short": 2,
+      "errors": 0
+    },
+    "NeurIPS/2023": {
+      "total": 18,
+      "human": 16,
+      "ai": 0,
+      "mixed": 1,
+      "short": 1,
+      "errors": 0
+    },
+    "NeurIPS/2024": {
+      "total": 4,
+      "human": 4,
+      "ai": 0,
+      "mixed": 0,
+      "short": 0,
+      "errors": 0
+    }
+  },
+  "kept_samples": [
+    "COLM/2024/yIEyHP7AvH/rWmnJ (1007 chars, 6% human)",
+    "ICLR/2022/N0n_QyQ5lBF/rhzHn (5224 chars, 100% human)",
+    "ICLR/2022/XzTtHjgPDsT/r2GPN (1772 chars, 100% human)",
+    "ICLR/2022/XzTtHjgPDsT/rCdd9 (627 chars, 100% human)",
+    "ICLR/2022/XzTtHjgPDsT/rEPxc (5273 chars, 100% human)",
+    "ICLR/2022/XzTtHjgPDsT/rpjX4 (3043 chars, 100% human)",
+    "ICLR/2022/l4IHywGq6a/r4wRv (1521 chars, 100% human)",
+    "ICLR/2022/l4IHywGq6a/rLtXp (742 chars, 100% human)",
+    "ICLR/2022/l4IHywGq6a/rQrrj (1807 chars, 100% human)",
+    "ICLR/2022/l4IHywGq6a/roHTg (2654 chars, 100% human)",
+    "ICLR/2024/7Ttk3RzDeu/rSAFf (1792 chars, 100% human)",
+    "ICLR/2024/7Ttk3RzDeu/rhJ5Z (1267 chars, 100% human)",
+    "ICLR/2024/7Ttk3RzDeu/rvK8q (1199 chars, 100% human)",
+    "ICLR/2024/KS8mIvetg2/rFS83 (1128 chars, 100% human)",
+    "ICLR/2024/KS8mIvetg2/rRgfh (449 chars, 100% human)",
+    "ICLR/2024/KS8mIvetg2/rgkwi (1117 chars, 100% human)",
+    "ICLR/2024/aN4Jf6Cx69/r3R5R (835 chars, 100% human)",
+    "ICLR/2024/aN4Jf6Cx69/rY7Wm (1033 chars, 100% human)",
+    "ICLR/2024/aN4Jf6Cx69/rciFG (2866 chars, 100% human)",
+    "ICLR/2024/aN4Jf6Cx69/rsq8T (6842 chars, 100% human)",
+    "ICLR/2024/ekeyCgeRfC/r9RLW (2563 chars, 100% human)",
+    "ICLR/2024/ekeyCgeRfC/rbf3N (1098 chars, 100% human)",
+    "ICLR/2024/ekeyCgeRfC/rfGea (921 chars, 100% human)",
+    "NeurIPS/2023/AOKU4nRw1W/rEHJQ (1116 chars, 100% human)",
+    "NeurIPS/2023/AOKU4nRw1W/rGWNd (801 chars, 100% human)",
+    "NeurIPS/2023/AOKU4nRw1W/rLWw2 (2178 chars, 100% human)",
+    "NeurIPS/2023/AOKU4nRw1W/rRH2g (1119 chars, 100% human)",
+    "NeurIPS/2023/KvPwXVcslY/r9K3N (2389 chars, 98% human)",
+    "NeurIPS/2023/KvPwXVcslY/rQrRK (3745 chars, 100% human)",
+    "NeurIPS/2023/KvPwXVcslY/rTCTa (2059 chars, 100% human)",
+    "NeurIPS/2023/KvPwXVcslY/rkLx7 (834 chars, 100% human)",
+    "NeurIPS/2023/KvPwXVcslY/rvBv1 (3801 chars, 100% human)",
+    "NeurIPS/2023/NnMEadcdyD/rDESf (1197 chars, 100% human)",
+    "NeurIPS/2023/NnMEadcdyD/rQo9S (3274 chars, 100% human)",
+    "NeurIPS/2023/NnMEadcdyD/rbjDS (5643 chars, 100% human)",
+    "NeurIPS/2023/NnMEadcdyD/reoU3 (370 chars, 100% human)",
+    "NeurIPS/2023/TXoZiUZywf/rCd9x (2983 chars, 100% human)",
+    "NeurIPS/2023/TXoZiUZywf/rqEDN (2393 chars, 100% human)",
+    "NeurIPS/2023/TXoZiUZywf/ruqhQ (4406 chars, 100% human)",
+    "NeurIPS/2024/aVh9KRZdRk/rCrUb (1914 chars, 100% human)",
+    "NeurIPS/2024/aVh9KRZdRk/rJerg (1260 chars, 100% human)",
+    "NeurIPS/2024/aVh9KRZdRk/rPjEW (4247 chars, 99% human)",
+    "NeurIPS/2024/aVh9KRZdRk/rrwBm (1193 chars, 100% human)"
+  ]
+}

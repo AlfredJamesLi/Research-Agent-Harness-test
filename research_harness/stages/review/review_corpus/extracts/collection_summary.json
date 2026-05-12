@@ -1,0 +1,159 @@
+{
+  "buckets": [
+    {
+      "venue": "NeurIPS",
+      "year": 2023,
+      "forums": [
+        {
+          "forum_id": "NnMEadcdyD",
+          "title": "Understanding Diffusion Objectives as the ELBO with Simple Data Augmentation",
+          "reviews_saved": 6
+        },
+        {
+          "forum_id": "TXoZiUZywf",
+          "title": "Improved Algorithms for Stochastic Linear Bandits Using Tail Bounds for Martingale Mixtures",
+          "reviews_saved": 5
+        },
+        {
+          "forum_id": "KvPwXVcslY",
+          "title": "Spatial-frequency channels, shape bias, and adversarial robustness",
+          "reviews_saved": 8
+        },
+        {
+          "forum_id": "AOKU4nRw1W",
+          "title": "Linguistic Binding in Diffusion Models: Enhancing Attribute Correspondence through Attention Map Alignment",
+          "reviews_saved": 5
+        }
+      ],
+      "forum_count": 4
+    },
+    {
+      "venue": "NeurIPS",
+      "year": 2024,
+      "forums": [
+        {
+          "forum_id": "aVh9KRZdRk",
+          "title": "Learning to grok: Emergence of in-context learning and skill composition in modular arithmetic tasks",
+          "reviews_saved": 4
+        }
+      ],
+      "forum_count": 1
+    },
+    {
+      "venue": "COLM",
+      "year": 2024,
+      "forums": [
+        {
+          "forum_id": "yIEyHP7AvH",
+          "title": "Khayyam Challenge (PersianMMLU): Is Your LLM Truly Wise to The Persian Language?",
+          "reviews_saved": 2
+        },
+        {
+          "forum_id": "sJvhwDtFhQ",
+          "title": "TPD: Enhancing Student Language Model Reasoning via Principle Discovery and Guidance",
+          "error": "RemoteDisconnected: Remote end closed connection without response"
+        },
+        {
+          "forum_id": "FgHpT6u7pk",
+          "title": "CoCA: Regaining Safety-awareness of Multimodal Large Language Models with Constitutional Calibration",
+          "reviews_saved": 1
+        },
+        {
+          "forum_id": "lkrH6ovzsj",
+          "title": "Multi-FAct: Assessing Factuality of Multilingual LLMs using FActScore",
+          "reviews_saved": 1
+        }
+      ],
+      "forum_count": 4
+    },
+    {
+      "venue": "ICLR",
+      "year": 2024,
+      "forums": [
+        {
+          "forum_id": "KS8mIvetg2",
+          "title": "Proving Test Set Contamination in Black-Box Language Models",
+          "reviews_saved": 4
+        },
+        {
+          "forum_id": "7Ttk3RzDeu",
+          "title": "BooookScore: A systematic exploration of book-length summarization in the era of LLMs",
+          "reviews_saved": 5
+        },
+        {
+          "forum_id": "ekeyCgeRfC",
+          "title": "Understanding In-Context Learning in Transformers and LLMs by Learning to Learn Discrete Functions",
+          "reviews_saved": 8
+        },
+        {
+          "forum_id": "aN4Jf6Cx69",
+          "title": "The mechanistic basis of data dependence and abrupt learning in an in-context classification task",
+          "reviews_saved": 5
+        }
+      ],
+      "forum_count": 4
+    },
+    {
+      "venue": "ICLR",
+      "year": 2023,
+      "forums": [],
+      "forum_count": 0
+    },
+    {
+      "venue": "ICLR",
+      "year": 2022,
+      "forums": [
+        {
+          "forum_id": "XzTtHjgPDsT",
+          "title": "Coordination Among Neural Modules Through a Shared Global Workspace",
+          "reviews_saved": 4
+        },
+        {
+          "forum_id": "l4IHywGq6a",
+          "title": "Data-Efficient Graph Grammar Learning for Molecular Generation",
+          "reviews_saved": 4
+        },
+        {
+          "forum_id": "N0n_QyQ5lBF",
+          "title": "Unsupervised Vision-Language Grammar Induction with Shared Structure Modeling",
+          "reviews_saved": 4
+        },
+        {
+          "forum_id": "0EXmFzUn5I",
+          "title": "Pyraformer: Low-Complexity Pyramidal Attention for Long-Range Time Series Modeling and Forecasting",
+          "reviews_saved": 4
+        }
+      ],
+      "forum_count": 4
+    },
+    {
+      "venue": "ICLR",
+      "year": 2021,
+      "forums": [
+        {
+          "forum_id": "Wj4ODo0uyCF",
+          "title": "Share or Not? Learning to Schedule Language-Specific Capacity for Multilingual Translation",
+          "reviews_saved": 0
+        },
+        {
+          "forum_id": "rsf1z-JSj87",
+          "title": "End-to-end Adversarial Text-to-Speech",
+          "reviews_saved": 0
+        },
+        {
+          "forum_id": "PKubaeJkw3",
+          "title": "Rethinking Architecture Selection in Differentiable NAS",
+          "reviews_saved": 0
+        },
+        {
+          "forum_id": "yWkP7JuHX1",
+          "title": "Image GANs meet Differentiable Rendering for Inverse Graphics and Interpretable 3D Neural Rendering",
+          "reviews_saved": 0
+        }
+      ],
+      "forum_count": 4
+    }
+  ],
+  "total_forums": 21,
+  "total_reviews": 70
+}

@@ -1,0 +1,834 @@
+{
+  "corpus_meta": {
+    "n_samples": 52,
+    "total_chars": 106108,
+    "total_words": 16708,
+    "venues": [
+      "COLM",
+      "ICLR",
+      "NeurIPS"
+    ],
+    "year_range": [
+      2022,
+      2024
+    ]
+  },
+  "sentence_length": {
+    "mean": 21.37,
+    "n": 782,
+    "histogram": {
+      "very_short_<=8": 122,
+      "short_9_15": 191,
+      "medium_16_25": 230,
+      "long_26_40": 177,
+      "very_long_>=41": 62
+    },
+    "percentiles": {
+      "p10": 6,
+      "p25": 11,
+      "p50": 18,
+      "p75": 28,
+      "p90": 38
+    }
+  },
+  "paragraph_length": {
+    "mean": 2.86,
+    "n": 286,
+    "histogram": {
+      "1_sentence": 77,
+      "2_3": 133,
+      "4_6": 62,
+      "7_10": 11,
+      "11_plus": 3
+    }
+  },
+  "first_person_per_100_words": 1.32,
+  "em_dash_per_1000_chars": 0.0,
+  "parenthetical_per_1000_chars": 1.94,
+  "hedging_phrases": {
+    "matches_count": {
+      "I think": 13,
+      "in my view": 1,
+      "in my opinion": 3,
+      "to me,": 9,
+      "I worry": 1,
+      "it seems to me": 1,
+      "arguably": 5,
+      "perhaps": 9,
+      "somewhat": 2,
+      "kind of": 2
+    },
+    "examples": {
+      "I think": [
+        "…hors have promised some revisions which I think are minor and easy to do.  I think the paper will make for …",
+        "…hich I think are minor and easy to do.  I think the paper will make for good conversation at the conference…",
+        "…in the paper since it wasn't out yet).  I think the authors could and probably should do this so that there…"
+      ],
+      "in my view": [
+        "… would be very beneficial for the field in my view and this paper would help the community in that regard.    …"
+      ],
+      "in my opinion": [
+        "…ightarrow$ Shi et al. (2019) propose  - In my opinion, putting Section 3.4 before 3.3 would better streamline the…",
+        "…uctures instead of single atoms). This, in my opinion, is a plus. The main advantage of this model is its data ef…",
+        "…e been included in the minimal model.\"  In my opinion, such claims are much too strong.  The three-parameter mode…"
+      ],
+      "to me,": [
+        "…olution represent. This is only evident to me after reading section 3.2 which states that convolutional l…",
+        "…he experimental setup is not 100% clear to me even after reading the appendix. Please clarify or point me…",
+        "…ocess are solid and make a lot of sense to me.    - The visually grounded parsing results are quite impre…"
+      ],
+      "I worry": [
+        "…crux of the motivation behind my score: I worry that this paper overstates its claim and the real claim is …"
+      ],
+      "it seems to me": [
+        "…es from.  -On your assumptions 7.1-7.4: It seems to me that 7.2+7.3 together imply a bound of the form asked for i…"
+      ],
+      "arguably": [
+        "…mars\" to language grammars, yielding an arguably unified VL structure.   - Introduction: \"The non-terminal s…",
+        "…egarding motivation limitations: humans arguably learns how to parse concrete sentences first, and can then …",
+        "…ny different publishers. Still, this is arguably one of the most rigorous attempts to create a test set that…"
+      ],
+      "perhaps": [
+        "…r a4f9 that more models would be nice - perhaps the authors could use Together.ai (if they can't run them l…",
+        "…mmend that as a major area of focus and perhaps rewriting for the camera-ready version to the authors.  __P…",
+        "…e all three parameters are equal to 0.  Perhaps an understanding of this is latent in the equations and I c…"
+      ],
+      "somewhat": [
+        "…t as the Grammian a good idea? It feels somewhat unsatisfying to introduce all the possibilities for adaptiv…",
+        "… theory does not reflect this, which is somewhat disappointing.  One additional thing that I would like to c…"
+      ],
+      "kind of": [
+        "…space method is not specific to certain kind of backbones.  Weaknesses:  - Although the authors perform exp…",
+        "…tive examples demonstrate the different kind of issues faced by the baselines and the improvements brought …"
+      ]
+    }
+  },
+  "opening_hook_patterns": {
+    "The main": 1,
+    "I would": 1,
+    "I think": 2,
+    "I'm": 1,
+    "The paper": 13,
+    "This paper": 2,
+    "Although": 2,
+    "However,": 2
+  },
+  "top_sentence_openings_3w": [
+    [
+      "the paper is",
+      10
+    ],
+    [
+      "strengths",
+      6
+    ],
+    [
+      "the proposed method",
+      6
+    ],
+    [
+      "it would be",
+      5
+    ],
+    [
+      "i think the",
+      4
+    ],
+    [
+      "the experiments are",
+      4
+    ],
+    [
+      "can the authors",
+      4
+    ],
+    [
+      "for example the",
+      4
+    ],
+    [
+      "it is unclear",
+      4
+    ],
+    [
+      "this is not",
+      4
+    ],
+    [
+      "i would like",
+      3
+    ],
+    [
+      "this paper proposes",
+      3
+    ],
+    [
+      "the method is",
+      3
+    ],
+    [
+      "clarity the paper",
+      3
+    ],
+    [
+      "the authors have",
+      2
+    ],
+    [
+      "is there a",
+      2
+    ],
+    [
+      "weakness",
+      2
+    ],
+    [
+      "however i feel",
+      2
+    ],
+    [
+      "https openaccess thecvf",
+      2
+    ],
+    [
+      "https arxiv org",
+      2
+    ],
+    [
+      "weaknesses",
+      2
+    ],
+    [
+      "the authors propose",
+      2
+    ],
+    [
+      "i enjoyed reading",
+      2
+    ],
+    [
+      "this is the",
+      2
+    ],
+    [
+      "i am concerned",
+      2
+    ],
+    [
+      "the paper addresses",
+      2
+    ],
+    [
+      "i understand that",
+      2
+    ],
+    [
+      "the paper makes",
+      2
+    ],
+    [
+      "this paper tackles",
+      2
+    ],
+    [
+      "there are two",
+      2
+    ],
+    [
+      "in this case",
+      2
+    ],
+    [
+      "the fact that",
+      2
+    ],
+    [
+      "in general the",
+      2
+    ],
+    [
+      "this paper attempts",
+      2
+    ],
+    [
+      "wang et al",
+      2
+    ],
+    [
+      "perhaps it is",
+      2
+    ],
+    [
+      "the following are",
+      2
+    ],
+    [
+      "i have not",
+      2
+    ],
+    [
+      "overall these empirical",
+      1
+    ],
+    [
+      "i would strongly",
+      1
+    ]
+  ],
+  "top_sentence_openings_5w": [
+    [
+      "the paper is well written",
+      2
+    ],
+    [
+      "https openaccess thecvf com content",
+      2
+    ],
+    [
+      "i enjoyed reading this paper",
+      2
+    ],
+    [
+      "the paper addresses an important",
+      2
+    ],
+    [
+      "i would like to thank",
+      1
+    ],
+    [
+      "overall these empirical results provide",
+      1
+    ],
+    [
+      "i would strongly urge the",
+      1
+    ],
+    [
+      "additionally a more elaborate discussion",
+      1
+    ],
+    [
+      "i have increased my score",
+      1
+    ],
+    [
+      "i like this work and",
+      1
+    ],
+    [
+      "the authors have promised some",
+      1
+    ],
+    [
+      "i think the paper will",
+      1
+    ],
+    [
+      "re other reviewer concerns i",
+      1
+    ],
+    [
+      "however i don't think that",
+      1
+    ],
+    [
+      "i agree with reviewer a",
+      1
+    ],
+    [
+      "i think the authors could",
+      1
+    ],
+    [
+      "regarding the first point about",
+      1
+    ],
+    [
+      "this is something i would",
+      1
+    ],
+    [
+      "on the data contamination issue",
+      1
+    ],
+    [
+      "however the hypothesis that the",
+      1
+    ],
+    [
+      "i assume there are also",
+      1
+    ],
+    [
+      "therefore one possible solution would",
+      1
+    ],
+    [
+      "overall the authors have addressed",
+      1
+    ],
+    [
+      "i acknowledge reading the authors'",
+      1
+    ],
+    [
+      "i still believe that the",
+      1
+    ],
+    [
+      "overall i like the idea",
+      1
+    ],
+    [
+      "as mentioned in the summary",
+      1
+    ],
+    [
+      "this architecture as claimed can",
+      1
+    ],
+    [
+      "it can also maintain short",
+      1
+    ],
+    [
+      "this distance is o w",
+      1
+    ]
+  ],
+  "top_bigrams": [
+    [
+      "the paper",
+      85
+    ],
+    [
+      "the authors",
+      70
+    ],
+    [
+      "this paper",
+      38
+    ],
+    [
+      "the proposed",
+      38
+    ],
+    [
+      "would be",
+      32
+    ],
+    [
+      "paper is",
+      28
+    ],
+    [
+      "can be",
+      25
+    ],
+    [
+      "for example",
+      22
+    ],
+    [
+      "i would",
+      20
+    ],
+    [
+      "number of",
+      20
+    ],
+    [
+      "i have",
+      19
+    ],
+    [
+      "neural networks",
+      19
+    ],
+    [
+      "the experiments",
+      18
+    ],
+    [
+      "which is",
+      18
+    ],
+    [
+      "it would",
+      17
+    ],
+    [
+      "in context",
+      17
+    ],
+    [
+      "the same",
+      15
+    ],
+    [
+      "proposed method",
+      15
+    ],
+    [
+      "the number",
+      14
+    ],
+    [
+      "there is",
+      14
+    ],
+    [
+      "the model",
+      14
+    ],
+    [
+      "does not",
+      14
+    ],
+    [
+      "this work",
+      13
+    ],
+    [
+      "authors have",
+      13
+    ],
+    [
+      "i think",
+      13
+    ],
+    [
+      "about the",
+      13
+    ],
+    [
+      "method is",
+      13
+    ],
+    [
+      "the main",
+      13
+    ],
+    [
+      "set of",
+      12
+    ],
+    [
+      "is very",
+      12
+    ],
+    [
+      "easy to",
+      11
+    ],
+    [
+      "the first",
+      11
+    ],
+    [
+      "in section",
+      11
+    ],
+    [
+      "should be",
+      11
+    ],
+    [
+      "a more",
+      10
+    ],
+    [
+      "the evaluation",
+      10
+    ],
+    [
+      "there are",
+      10
+    ],
+    [
+      "a lot",
+      10
+    ],
+    [
+      "understanding of",
+      10
+    ],
+    [
+      "well written",
+      10
+    ]
+  ],
+  "top_trigrams": [
+    [
+      "the paper is",
+      21
+    ],
+    [
+      "of the paper",
+      16
+    ],
+    [
+      "it would be",
+      15
+    ],
+    [
+      "the proposed method",
+      15
+    ],
+    [
+      "in the paper",
+      14
+    ],
+    [
+      "the number of",
+      14
+    ],
+    [
+      "the authors have",
+      12
+    ],
+    [
+      "a lot of",
+      9
+    ],
+    [
+      "of the proposed",
+      9
+    ],
+    [
+      "in this paper",
+      8
+    ],
+    [
+      "i would like",
+      7
+    ],
+    [
+      "the authors to",
+      7
+    ],
+    [
+      "i think the",
+      7
+    ],
+    [
+      "the experiments are",
+      7
+    ],
+    [
+      "https arxiv org",
+      7
+    ],
+    [
+      "easy to follow",
+      7
+    ],
+    [
+      "for example the",
+      7
+    ],
+    [
+      "would like to",
+      6
+    ],
+    [
+      "there is a",
+      6
+    ],
+    [
+      "well written and",
+      6
+    ],
+    [
+      "in context learning",
+      6
+    ],
+    [
+      "z t dots",
+      6
+    ],
+    [
+      "what is the",
+      5
+    ],
+    [
+      "arxiv org abs",
+      5
+    ],
+    [
+      "paper is well",
+      5
+    ],
+    [
+      "seem to be",
+      5
+    ],
+    [
+      "part of the",
+      5
+    ],
+    [
+      "the proposed approach",
+      5
+    ],
+    [
+      "it is unclear",
+      5
+    ],
+    [
+      "of this paper",
+      5
+    ],
+    [
+      "proposed method is",
+      5
+    ],
+    [
+      "the full network",
+      5
+    ],
+    [
+      "spatial frequency sensitivity",
+      5
+    ],
+    [
+      "vert p z",
+      5
+    ],
+    [
+      "and easy to",
+      4
+    ],
+    [
+      "would be nice",
+      4
+    ],
+    [
+      "the authors could",
+      4
+    ],
+    [
+      "that the authors",
+      4
+    ],
+    [
+      "as mentioned in",
+      4
+    ],
+    [
+      "mentioned in the",
+      4
+    ]
+  ],
+  "vocab_top_50": [
+    [
+      "that",
+      232
+    ],
+    [
+      "this",
+      191
+    ],
+    [
+      "paper",
+      145
+    ],
+    [
+      "with",
+      105
+    ],
+    [
+      "would",
+      81
+    ],
+    [
+      "have",
+      80
+    ],
+    [
+      "authors",
+      76
+    ],
+    [
+      "work",
+      61
+    ],
+    [
+      "model",
+      60
+    ],
+    [
+      "more",
+      59
+    ],
+    [
+      "from",
+      59
+    ],
+    [
+      "some",
+      56
+    ],
+    [
+      "data",
+      52
+    ],
+    [
+      "which",
+      49
+    ],
+    [
+      "proposed",
+      49
+    ],
+    [
+      "different",
+      48
+    ],
+    [
+      "well",
+      47
+    ],
+    [
+      "very",
+      45
+    ],
+    [
+      "these",
+      43
+    ],
+    [
+      "also",
+      43
+    ],
+    [
+      "they",
+      43
+    ],
+    [
+      "section",
+      42
+    ],
+    [
+      "learning",
+      42
+    ],
+    [
+      "results",
+      41
+    ],
+    [
+      "models",
+      40
+    ],
+    [
+      "there",
+      40
+    ],
+    [
+      "experiments",
+      39
+    ]
+  ]
+}

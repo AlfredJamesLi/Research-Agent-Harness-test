@@ -306,7 +306,10 @@ def build_stage_available(stage: str) -> dict:
             if param.name in AUTO_PARAMS or param.name in HIDDEN_PARAMS:
                 continue
             ann = param.annotation
-            ptype = ann if ann is not inspect.Parameter.empty else str
+            if ann is inspect.Parameter.empty or isinstance(ann, str):
+                ptype = str
+            else:
+                ptype = ann
             spec: dict = {"source": "llm", "type": ptype}
             if param.default is not inspect.Parameter.empty:
                 spec["description"] = f"optional (default={param.default!r})"

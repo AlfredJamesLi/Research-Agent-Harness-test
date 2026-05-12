@@ -15,6 +15,7 @@ dependencies = [
 
 [project.scripts]
 research-harness = "research_harness.main:main"
+research-review = "research_harness.review:main"
 
 [tool.setuptools.packages.find]
 include = ["research_harness*"]
