@@ -327,35 +327,33 @@ def extract_pdf_figure(
 ) -> tuple[int, tuple[float, float, float, float]]:
     """Crop one figure from a PDF, anchored on its caption.
 
-    Academic papers compose figures as vector graphics + text, so
-    `page.get_images()` returns at best a logo or legend swatch. This
-    helper instead locates the caption block (e.g. ``"Figure 2:"``) and
-    walks up the page to find the figure body, then renders that bbox
-    at `dpi`.
-
-    Args:
-        pdf_path: PDF file path.
-        caption_prefix: literal text that opens the caption — typically
-            ``"Figure 2:"`` or ``"Figure 2 |"``. Matched as a prefix on
-            stripped text blocks; the first match across pages wins.
-        out_path: PNG output path.
-        include_caption: whether to include the caption block in the
-            crop (default True — gives the reader figure context). False
-            crops only the figure body.
-        dpi: render resolution.
-        page_hint: optional 1-indexed page to search first. If None,
-            scan all pages.
-        max_caption_lines: maximum text-block lines that count as part
-            of the caption (longer following blocks are body text).
-        margin_pt: padding added on all sides of the cropped bbox.
-
-    Returns:
-        (page_number_1indexed, bbox) of the crop that was rendered.
-
-    Raises:
-        ValueError: caption not found.
-        ImportError: pymupdf not installed.
+    Thin back-compat wrapper around
+    ``openprogram.tools.pdf.figure_by_caption.extract_figure``. The
+    canonical implementation lives there; this shim preserves the
+    legacy ``(page, bbox)`` tuple return shape used by existing
+    callers in research_harness.
     """
+    try:
+        from openprogram.tools.pdf.figure_by_caption import (
+            extract_figure as _extract,
+        )
+    except ImportError:
+        _extract = None  # type: ignore
+
+    if _extract is not None:
+        result = _extract(
+            pdf_path=pdf_path,
+            caption_prefix=caption_prefix,
+            out_path=out_path,
+            include_caption=include_caption,
+            dpi=dpi,
+            page_hint=page_hint,
+            max_caption_lines=max_caption_lines,
+            margin_pt=margin_pt,
+        )
+        return result.page, result.bbox
+
+    # Fallback: inline implementation if OpenProgram isn't on PYTHONPATH.
     import fitz  # type: ignore
 
     pdf_path = Path(pdf_path)
