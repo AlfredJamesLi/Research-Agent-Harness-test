@@ -328,13 +328,13 @@ def extract_pdf_figure(
     """Crop one figure from a PDF, anchored on its caption.
 
     Thin back-compat wrapper around
-    ``openprogram.tools.pdf.figure_by_caption.extract_figure``. The
+    ``openprogram.tools.pdf.extract_figure.extract_figure``. The
     canonical implementation lives there; this shim preserves the
     legacy ``(page, bbox)`` tuple return shape used by existing
     callers in research_harness.
     """
     try:
-        from openprogram.tools.pdf.figure_by_caption import (
+        from openprogram.tools.pdf.extract_figure import (
             extract_one_figure as _extract,
         )
     except ImportError:
