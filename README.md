@@ -9,20 +9,30 @@ Built with [OpenProgram](https://github.com/Fzkuji/OpenProgram) (Agentic Program
 ### 1. Install
 
 ```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Then install the harness itself
 pip install research-agent-harness
 ```
 
 <details>
 <summary><b>Local development (editable)</b></summary>
 
-Three-repo layout, `openprogram` first (this repo depends on it):
+Clone both repos, install OpenProgram first (this repo depends on it):
 
 ```bash
-pip install -e ~/Documents/LLM\ Agent\ Harness/OpenProgram
-pip install -e ~/Documents/Research-Agent-Harness     # this repo
+# 1. Clone and install OpenProgram
+git clone https://github.com/Fzkuji/OpenProgram.git
+pip install -e OpenProgram
+
+# 2. Clone and install this harness
+git clone https://github.com/Fzkuji/Research-Agent-Harness.git
+pip install -r Research-Agent-Harness/requirements.txt
+pip install -e Research-Agent-Harness
 ```
 
-`pip install -e` hard-codes absolute paths into `site-packages/*.pth`. If you rename any parent folder, `import research_harness` (or `openprogram`) will break with `ModuleNotFoundError` until you rerun `pip install -e .` from the new location. The OpenProgram symlink at `openprogram/programs/applications/Research-Agent-Harness` also points to an absolute path — recreate it after any move.
+`pip install -e` hard-codes absolute paths into `site-packages/*.pth`. If you rename any parent folder, `import research_harness` (or `openprogram`) will break with `ModuleNotFoundError` until you rerun `pip install -e .` from the new location.
 
 </details>
 
