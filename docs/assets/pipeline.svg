@@ -1,0 +1,141 @@
+<svg width="980" height="470" viewBox="0 0 980 470" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="980" y2="470" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#10141f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="980" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#58a6ff"/>
+      <stop offset="0.5" stop-color="#bc8cf2"/>
+      <stop offset="1" stop-color="#3fb950"/>
+    </linearGradient>
+    <radialGradient id="gateGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#d29922" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#d29922" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b949e"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d29922"/>
+    </marker>
+    <style>
+      .flow { stroke-dasharray: 6 7; animation: dash 1.6s linear infinite; }
+      @keyframes dash { to { stroke-dashoffset: -13; } }
+      .pulse { animation: pulse 2.4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+      @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+      .t  { fill: #e6edf3; }
+      .s  { fill: #8b949e; }
+      .a  { fill: #d29922; }
+    </style>
+  </defs>
+
+  <!-- canvas -->
+  <rect x="1" y="1" width="978" height="468" rx="16" fill="url(#bg)" stroke="#30363d"/>
+  <rect x="1" y="1" width="978" height="4" rx="2" fill="url(#accent)"/>
+
+  <!-- title -->
+  <text x="490" y="48" text-anchor="middle" font-size="21" font-weight="700" class="t">From a topic to a submission-ready paper</text>
+  <text x="490" y="72" text-anchor="middle" font-size="12.5" class="s">deterministic verification gates — code, not vibes — stand between every model stage and your paper</text>
+
+  <!-- ═══ row 1 : research ═══ -->
+  <!-- Literature -->
+  <g filter="url(#soft)">
+    <rect x="42" y="108" width="172" height="92" rx="13" fill="#161b22" stroke="#30363d"/>
+    <g transform="translate(60,126)" stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M1,3 C4,1 8,1 10,3 C12,1 16,1 19,3 V15 C16,13 12,13 10,15 C8,13 4,13 1,15 Z"/><line x1="10" y1="3" x2="10" y2="15"/></g>
+    <text x="96" y="142" font-size="14.5" font-weight="600" class="t">Literature</text>
+    <text x="64" y="170" font-size="11" class="s">self-evolving taxonomy loop,</text>
+    <text x="64" y="186" font-size="11" class="s">resumable · PRISMA real counts</text>
+  </g>
+  <line x1="214" y1="154" x2="262" y2="154" stroke="#8b949e" stroke-width="1.6" marker-end="url(#arrow)" class="flow"/>
+
+  <!-- Ideas -->
+  <g filter="url(#soft)">
+    <rect x="266" y="108" width="172" height="92" rx="13" fill="#161b22" stroke="#30363d"/>
+    <g transform="translate(284,126)" stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="5.5"/><line x1="6.5" y1="13" x2="11.5" y2="13"/><line x1="7.5" y1="16" x2="10.5" y2="16"/></g>
+    <text x="320" y="142" font-size="14.5" font-weight="600" class="t">Ideas</text>
+    <text x="288" y="170" font-size="11" class="s">generate · novelty-check</text>
+    <text x="288" y="186" font-size="11" class="s">against live literature · rank</text>
+  </g>
+  <line x1="438" y1="154" x2="486" y2="154" stroke="#8b949e" stroke-width="1.6" marker-end="url(#arrow)" class="flow"/>
+
+  <!-- Experiments -->
+  <g filter="url(#soft)">
+    <rect x="490" y="108" width="172" height="92" rx="13" fill="#161b22" stroke="#30363d"/>
+    <g transform="translate(508,126)" stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M7,1 h5 v5.5 l4.2,8.2 a1.9,1.9 0 0 1 -1.7,2.8 H4.5 a1.9,1.9 0 0 1 -1.7,-2.8 L7,6.5 Z"/><line x1="5.2" y1="12" x2="13.8" y2="12"/></g>
+    <text x="544" y="142" font-size="14.5" font-weight="600" class="t">Experiments</text>
+    <text x="512" y="170" font-size="11" class="s">design · run · monitor —</text>
+    <text x="512" y="186" font-size="11" class="s">machine-readable run records</text>
+  </g>
+  <line x1="662" y1="154" x2="710" y2="154" stroke="#d29922" stroke-width="1.6" marker-end="url(#arrowAmber)" class="flow"/>
+
+  <!-- GATE 1 : integrity -->
+  <g>
+    <circle cx="790" cy="154" r="64" fill="url(#gateGlow)" class="pulse"/>
+    <g filter="url(#soft)">
+      <rect x="722" y="116" width="136" height="76" rx="13" fill="#1c1607" stroke="#d29922" stroke-width="1.4"/>
+      <text x="790" y="143" text-anchor="middle" font-size="13.5" font-weight="700" class="a">◆ integrity gate</text>
+      <text x="790" y="162" text-anchor="middle" font-size="10.5" class="s">every claim must match</text>
+      <text x="790" y="176" text-anchor="middle" font-size="10.5" class="s">an actual run record</text>
+    </g>
+  </g>
+
+  <!-- serpentine: row1 -> row2 -->
+  <path d="M 858 154 C 935 154 935 154 935 222 C 935 290 935 290 858 290" stroke="#8b949e" stroke-width="1.6" fill="none" marker-end="url(#arrow)" class="flow"/>
+
+  <!-- ═══ row 2 : paper (flows right -> left) ═══ -->
+  <!-- Writing -->
+  <g filter="url(#soft)">
+    <rect x="686" y="244" width="172" height="92" rx="13" fill="#161b22" stroke="#30363d"/>
+    <g transform="translate(704,262)" stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5,16.5 L12,7 l3,3 L5.5,19.5 l-4,1 Z"/><line x1="12" y1="7" x2="15" y2="10"/></g>
+    <text x="742" y="278" font-size="14.5" font-weight="600" class="t">Writing</text>
+    <text x="708" y="306" font-size="11" class="s">25 functions: sections, polish,</text>
+    <text x="708" y="322" font-size="11" class="s">figures, EN⇄ZH, LaTeX build</text>
+  </g>
+  <line x1="686" y1="290" x2="638" y2="290" stroke="#d29922" stroke-width="1.6" marker-end="url(#arrowAmber)" class="flow"/>
+
+  <!-- GATE 2 : citation -->
+  <g>
+    <circle cx="566" cy="290" r="64" fill="url(#gateGlow)" class="pulse"/>
+    <g filter="url(#soft)">
+      <rect x="498" y="252" width="136" height="76" rx="13" fill="#1c1607" stroke="#d29922" stroke-width="1.4"/>
+      <text x="566" y="279" text-anchor="middle" font-size="13.5" font-weight="700" class="a">◆ citation gate</text>
+      <text x="566" y="298" text-anchor="middle" font-size="10.5" class="s">every reference resolved</text>
+      <text x="566" y="312" text-anchor="middle" font-size="10.5" class="s">against 4 indexes</text>
+    </g>
+  </g>
+  <line x1="498" y1="290" x2="450" y2="290" stroke="#8b949e" stroke-width="1.6" marker-end="url(#arrow)" class="flow"/>
+
+  <!-- Review -->
+  <g filter="url(#soft)">
+    <rect x="278" y="244" width="172" height="92" rx="13" fill="#161b22" stroke="#30363d"/>
+    <g transform="translate(296,262)" stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="2" x2="10" y2="17"/><line x1="6.5" y1="18" x2="13.5" y2="18"/><line x1="3" y1="5" x2="17" y2="5"/><path d="M4.5,5 L2,10.5 a2.7,2.7 0 0 0 5,0 Z"/><path d="M15.5,5 L13,10.5 a2.7,2.7 0 0 0 5,0 Z"/></g>
+    <text x="334" y="278" font-size="14.5" font-weight="600" class="t">Review loop</text>
+    <text x="300" y="306" font-size="11" class="s">a different model reviews —</text>
+    <text x="300" y="322" font-size="11" class="s">multi-round, no self-grading</text>
+  </g>
+  <line x1="278" y1="290" x2="230" y2="290" stroke="#8b949e" stroke-width="1.6" marker-end="url(#arrow)" class="flow"/>
+
+  <!-- revise loop-back: Review -> Writing (arc above) -->
+  <path d="M 380 244 C 420 196 640 196 738 240" stroke="#bc8cf2" stroke-width="1.4" fill="none" stroke-dasharray="3 5" marker-end="url(#arrow)" opacity="0.85"/>
+  <text x="60" y="224" font-size="10.5" fill="#bc8cf2">revise loop — every promised fix is audited next round</text>
+
+  <!-- Paper -->
+  <g filter="url(#soft)">
+    <rect x="42" y="244" width="188" height="92" rx="13" fill="#0f2417" stroke="#3fb950" stroke-width="1.4"/>
+    <g transform="translate(60,264)" stroke="#3fb950" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3,1 h8.5 l5,5 V19 H3 Z"/><path d="M11.5,1 v5 h5"/><line x1="6" y1="11" x2="13.5" y2="11"/><line x1="6" y1="14.5" x2="13.5" y2="14.5"/></g>
+    <text x="100" y="278" font-size="15" font-weight="700" fill="#3fb950">Paper</text>
+    <text x="64" y="306" font-size="11" class="s">+ rebuttal · slides · poster</text>
+    <text x="64" y="322" font-size="11" class="s">+ full audit trail of every step</text>
+  </g>
+
+  <!-- footer legend -->
+  <line x1="42" y1="376" x2="938" y2="376" stroke="#21262d"/>
+  <text x="42" y="406" font-size="11.5" class="s"><tspan class="a" font-weight="700">◆ gates run zero tokens</tspan> — fabricated DOIs, unsupported numbers and uncited claims are caught by pure Python,</text>
+  <text x="42" y="424" font-size="11.5" class="s">so they cost nothing, never hallucinate, and cannot be sweet-talked.  Every stage writes to OPERATION_LOG.md.</text>
+  <text x="938" y="406" text-anchor="end" font-size="11" class="s">prefer to steer? start with</text>
+  <text x="938" y="424" text-anchor="end" font-size="11" fill="#58a6ff" font-weight="600">research-harness --chat</text>
+</svg>

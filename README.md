@@ -13,7 +13,9 @@ Built with [OpenProgram](https://github.com/Fzkuji/OpenProgram) (*Agentic Progra
 > **This harness is an OpenProgram program — it runs *inside* OpenProgram.**
 > Install OpenProgram first, then add this harness to it.
 
----
+<p align="center">
+  <img src="docs/assets/pipeline.svg" width="980" alt="From a topic to a submission-ready paper — deterministic verification gates stand between every model stage and your paper">
+</p>
 
 ## Why this harness
 
@@ -24,55 +26,26 @@ Built with [OpenProgram](https://github.com/Fzkuji/OpenProgram) (*Agentic Progra
 - 🧰 **Everything is an editable function** — every step is a plain Python file whose docstring *is* the prompt. Open it, read it, change it. No hidden chains.
 - 📜 **Everything leaves a trace** — operation log, cumulative review log with full transcripts, PRISMA flow report computed from the literature loop's real ledger (every number auditable), commitment ledgers, integrity reports.
 
-## How it works
+## What's inside — 89 functions, 10 stages
 
-Two nested decision loops. Python owns the structure; at each step the LLM picks **one** option from a menu (OpenProgram's [next-step decision](https://github.com/Fzkuji/OpenProgram/blob/main/docs/design/runtime/next-step-decision.md) — `exec(choices=...)`), and the framework executes the pick:
+| Stage | # | Highlights |
+|---|---|---|
+| 📚 `literature` | 11 | `run_literature` taxonomy loop (seed surveys → framework → search → annotate → evolve → synthesize, resumable state), `prisma_report` with real ledger counts, arXiv / Semantic Scholar search |
+| 💡 `idea` | 5 | generate → novelty check → rank, `refine_research` direction sharpening |
+| 🧪 `experiment` | 6 | design, bridge-to-code, run with `run_record.json` provenance, training monitor, ablation planner |
+| ✍️ `writing` | 25 | section writing, rigorous/natural polish, EN⇄ZH translation, figures & captions, LaTeX compile, `integrity_gate`, deterministic lints, style profiles, AI-usage disclosure |
+| ⚖️ `review` | 16 | `review_loop` (personas, grounding, debate, ledger, trajectory), `verify_citations`, venue-calibrated scoring, revision plans that keep papers compilable |
+| 🛡️ `rebuttal` | 5 | parse reviews → strategy → draft, with an anti-sycophancy audit |
+| 🎤 `presentation` | 3 | Beamer slides, poster, speaker notes |
+| 📐 `theory` | 3 | honest derivations, proofs, grant proposals |
+| 🧠 `knowledge` | 12 | persistent research wiki (ingest / survey / refactor / lint), harness meta-optimizer |
+| 🚀 `project` | 3 | project init, fixed 8-stage pipeline, Socratic dialogue mode |
 
-```mermaid
-flowchart TB
-    T(["Task: Survey LLM uncertainty,<br/>write the paper, target NeurIPS"]) --> L1
+`research-harness --list` is the always-current catalog. Every function is a plain Python file — the docstring is the prompt; edit it and the behavior changes.
 
-    subgraph L1 ["Level 1 — pick a stage"]
-        direction TB
-        P{{"LLM picks one of 10 stages<br/>(or done)"}}
-    end
+## The verification layer
 
-    subgraph L2 ["Level 2 — work the stage"]
-        direction TB
-        F{{"LLM picks one function<br/>from the stage catalog"}}
-        X["Python executes it<br/>(runtime auto-injected)"]
-        F --> X --> F
-    end
-
-    L1 -->|"stage + sub-task"| L2
-    L2 -->|"stage_done + progress"| L1
-    L1 -->|done| R(["Result + OPERATION_LOG.md"])
-
-    style T fill:#1f6feb,color:#fff
-    style R fill:#238636,color:#fff
-```
-
-Misbehavior is handled by *code*: an unparseable pick is retried once and then fails loudly (never silent success), a model that re-picks the same function with the same arguments is warned and then cut off, and human-in-the-loop functions are hidden from the autonomous catalogs by oversight metadata.
-
-## The pipeline, with its checkpoints
-
-The full run is a research pipeline where **deterministic verification gates (◆) stand between the LLM stages**:
-
-```mermaid
-flowchart LR
-    LIT["📚 Literature<br/>taxonomy loop"] --> IDEA["💡 Ideas<br/>generate · novelty · rank"]
-    IDEA --> EXP["🧪 Experiments<br/>design · run · monitor"]
-    EXP --> G1{{"◆ integrity gate<br/>claims vs run records"}}
-    G1 --> WRITE["✍️ Writing<br/>25 functions"]
-    WRITE --> G2{{"◆ citation gate<br/>4-index existence check"}}
-    G2 --> REV["⚖️ Review loop<br/>cross-model, multi-round"]
-    REV -->|"revision plan +<br/>commitment ledger"| WRITE
-    REV --> OUT["📄 Paper<br/>+ rebuttal · slides · poster"]
-
-    style G1 fill:#9e6a03,color:#fff
-    style G2 fill:#9e6a03,color:#fff
-    style OUT fill:#238636,color:#fff
-```
+Deterministic checkpoints — pure Python, zero tokens — sit between the model and your paper:
 
 | Checkpoint | What it catches | How |
 |---|---|---|
@@ -84,20 +57,9 @@ flowchart LR
 
 ## The review loop (ARIS design, upgraded)
 
-```mermaid
-sequenceDiagram
-    participant A as Author (Claude)
-    participant R as Reviewer (GPT, fresh session per round)
-    loop until venue accept-threshold or max rounds
-        R->>R: N personas review independently<br/>(+ grounded prior-work retrieval)
-        R->>A: meta-review + weaknesses
-        A->>R: rebuttal (up to 3 weaknesses)
-        R->>R: concession protocol: withdraw only on 5/5 evidence —<br/>author persistence is not evidence
-        R->>A: revision plan (becomes a commitment ledger)
-        A->>A: fix paper · assets copied · trajectory tracked
-        R->>R: next round audits every commitment:<br/>FULLY / PARTIALLY / NOT_ADDRESSED / MADE_WORSE
-    end
-```
+<p align="center">
+  <img src="docs/assets/review.svg" width="980" alt="No self-grading: the author and the reviewer are different vendors, kept honest by three protocols enforced in code">
+</p>
 
 Three protocols keep multi-round review honest (all enforced in code, adapted from [ARS](https://github.com/Imbad0202/academic-research-skills) protocol specs):
 
@@ -237,24 +199,16 @@ calibration metric is better than expected calibration error?
 
 The mentor asks **one question at a time** (clarifying → probing → structuring → challenging), never answers for you, extracts `[INSIGHT]` commitments in your own words, and writes `RESEARCH_BRIEF.md` + the full transcript when the plan converges — then offers to start the autonomous run with the brief. Registered `oversight="interactive"`, so the unattended loop can never wander into it.
 
-## What's inside — 89 functions, 10 stages
 
-| Stage | # | Highlights |
-|---|---|---|
-| 📚 `literature` | 11 | `run_literature` taxonomy loop (seed surveys → framework → search → annotate → evolve → synthesize, resumable state), `prisma_report` with real ledger counts, arXiv / Semantic Scholar search |
-| 💡 `idea` | 5 | generate → novelty check → rank, `refine_research` direction sharpening |
-| 🧪 `experiment` | 6 | design, bridge-to-code, run with `run_record.json` provenance, training monitor, ablation planner |
-| ✍️ `writing` | 25 | section writing, rigorous/natural polish, EN⇄ZH translation, figures & captions, LaTeX compile, `integrity_gate`, deterministic lints, style profiles, AI-usage disclosure |
-| ⚖️ `review` | 16 | `review_loop` (personas, grounding, debate, ledger, trajectory), `verify_citations`, venue-calibrated scoring, revision plans that keep papers compilable |
-| 🛡️ `rebuttal` | 5 | parse reviews → strategy → draft, with an anti-sycophancy audit |
-| 🎤 `presentation` | 3 | Beamer slides, poster, speaker notes |
-| 📐 `theory` | 3 | honest derivations, proofs, grant proposals |
-| 🧠 `knowledge` | 12 | persistent research wiki (ingest / survey / refactor / lint), harness meta-optimizer |
-| 🚀 `project` | 3 | project init, fixed 8-stage pipeline, Socratic dialogue mode |
+## Under the hood
 
-`research-harness --list` is the always-current catalog. Every function is a plain Python file — the docstring is the prompt; edit it and the behavior changes.
+<p align="center">
+  <img src="docs/assets/loop.svg" width="980" alt="Two nested decision loops: Python owns the structure, the model only ever picks the next step">
+</p>
 
-## Project structure
+Two nested decision loops on OpenProgram's [next-step decision](https://github.com/Fzkuji/OpenProgram/blob/main/docs/design/runtime/next-step-decision.md) mechanism (`exec(choices=...)`): every routing point hands the model a typed menu, and the framework parses, validates, retries once, and executes the pick. Misbehavior is handled by *code* — an unresolvable pick fails loudly (never silent success), a model that re-picks the same function with the same arguments is warned and then cut off, and human-in-the-loop functions are hidden from the autonomous catalogs by oversight metadata.
+
+### Project structure
 
 ```
 Research-Agent-Harness/
@@ -272,7 +226,7 @@ Research-Agent-Harness/
 └── tests/                       # 288 tests, no network, mocked LLM
 ```
 
-## Design principles
+### Design principles
 
 1. **Python controls the loop, the LLM makes the decisions** — every routing point is a typed next-step decision with retry and loud failure; every guard (repetition, oversight, gates) is code.
 2. **The docstring is the prompt** — no hidden prompt files; reading a function tells you exactly what the model is told.
