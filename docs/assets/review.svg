@@ -1,15 +1,15 @@
 <svg width="980" height="440" viewBox="0 0 980 440" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
   <defs>
     <linearGradient id="bg2" x1="0" y1="0" x2="980" y2="440" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0d1117"/>
-      <stop offset="1" stop-color="#140f1f"/>
+      <stop offset="0" stop-color="var(--canvas)"/>
+      <stop offset="1" stop-color="var(--canvas2)"/>
     </linearGradient>
     <linearGradient id="vs" x1="0" y1="0" x2="980" y2="0" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#58a6ff"/>
       <stop offset="1" stop-color="#f85149"/>
     </linearGradient>
     <filter id="soft2" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#000000" flood-opacity="0.45"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#000000" flood-opacity="var(--shadow)"/>
     </filter>
     <marker id="aBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#58a6ff"/>
@@ -24,15 +24,29 @@
       <path d="M0,0 L10,5 L0,10 z" fill="#bc8cf2"/>
     </marker>
     <style>
+      svg {
+        --canvas:#0d1117; --canvas2:#140f1f; --card:#161b22; --border:#30363d;
+        --ink:#e6edf3; --muted:#8b949e; --shadow:0.45;
+        --author-fill:#0f1a2b; --author-divider:#1f3354;
+        --reviewer-fill:#2a1215; --reviewer-divider:#4a1d22;
+      }
+      @media (prefers-color-scheme: light) {
+        svg {
+          --canvas:#ffffff; --canvas2:#f6f8fa; --card:#f6f8fa; --border:#d0d7de;
+          --ink:#1f2328; --muted:#636c76; --shadow:0.16;
+          --author-fill:#ddf4ff; --author-divider:#b6e3ff;
+          --reviewer-fill:#ffebe9; --reviewer-divider:#ffcecb;
+        }
+      }
       .flow2 { stroke-dasharray: 6 7; animation: dash2 1.8s linear infinite; }
       .flow2r { stroke-dasharray: 6 7; animation: dash2r 1.8s linear infinite; }
       @keyframes dash2 { to { stroke-dashoffset: -13; } }
       @keyframes dash2r { to { stroke-dashoffset: 13; } }
-      .t2 { fill: #e6edf3; } .s2 { fill: #8b949e; }
+      .t2 { fill: var(--ink); } .s2 { fill: var(--muted); }
     </style>
   </defs>
 
-  <rect x="1" y="1" width="978" height="438" rx="16" fill="url(#bg2)" stroke="#30363d"/>
+  <rect x="1" y="1" width="978" height="438" rx="16" fill="none" stroke="var(--border)"/>
   <rect x="1" y="1" width="978" height="4" rx="2" fill="url(#vs)"/>
 
   <text x="490" y="46" text-anchor="middle" font-size="21" font-weight="700" class="t2">No self-grading. Ever.</text>
@@ -40,11 +54,11 @@
 
   <!-- AUTHOR card -->
   <g filter="url(#soft2)">
-    <rect x="42" y="96" width="250" height="190" rx="14" fill="#0f1a2b" stroke="#58a6ff" stroke-width="1.4"/>
+    <rect x="42" y="96" width="250" height="190" rx="14" fill="var(--author-fill)" stroke="#58a6ff" stroke-width="1.4"/>
     <g transform="translate(64,112)" stroke="#58a6ff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5,16.5 L12,7 l3,3 L5.5,19.5 l-4,1 Z"/><line x1="12" y1="7" x2="15" y2="10"/></g>
     <text x="102" y="124" font-size="15" font-weight="700" fill="#58a6ff">AUTHOR</text>
     <text x="102" y="142" font-size="11.5" class="s2">Claude · file-system access</text>
-    <line x1="66" y1="158" x2="268" y2="158" stroke="#1f3354"/>
+    <line x1="66" y1="158" x2="268" y2="158" stroke="var(--author-divider)"/>
     <text x="66" y="182" font-size="11.5" class="s2">• writes and revises the paper</text>
     <text x="66" y="202" font-size="11.5" class="s2">• rebuts up to 3 weaknesses</text>
     <text x="66" y="222" font-size="11.5" class="s2">• revised tree keeps its assets —</text>
@@ -54,11 +68,11 @@
 
   <!-- REVIEWER card -->
   <g filter="url(#soft2)">
-    <rect x="688" y="96" width="250" height="190" rx="14" fill="#2a1215" stroke="#f85149" stroke-width="1.4"/>
+    <rect x="688" y="96" width="250" height="190" rx="14" fill="var(--reviewer-fill)" stroke="#f85149" stroke-width="1.4"/>
     <g transform="translate(710,112)" stroke="#f85149" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><line x1="12.5" y1="12.5" x2="18.5" y2="18.5"/></g>
     <text x="748" y="124" font-size="15" font-weight="700" fill="#f85149">REVIEWER</text>
     <text x="748" y="142" font-size="11.5" class="s2">GPT · fresh session each round</text>
-    <line x1="712" y1="158" x2="914" y2="158" stroke="#4a1d22"/>
+    <line x1="712" y1="158" x2="914" y2="158" stroke="var(--reviewer-divider)"/>
     <text x="712" y="182" font-size="11.5" class="s2">• 9 personas: methodologist,</text>
     <text x="712" y="198" font-size="11.5" class="s2">&#160;&#160;statistician, devil's advocate…</text>
     <text x="712" y="218" font-size="11.5" class="s2">• grounded in retrieved prior work</text>
@@ -81,25 +95,25 @@
 
   <!-- rounds ribbon -->
   <g filter="url(#soft2)">
-    <rect x="330" y="300" width="320" height="34" rx="17" fill="#161b22" stroke="#30363d"/>
+    <rect x="330" y="300" width="320" height="34" rx="17" fill="var(--card)" stroke="var(--border)"/>
     <text x="490" y="322" text-anchor="middle" font-size="12" class="s2">round 1 → 2 → 3 → …  until the <tspan fill="#3fb950" font-weight="600">venue accept-threshold</tspan></text>
   </g>
 
   <!-- protocol chips -->
   <g filter="url(#soft2)">
-    <rect x="42" y="356" width="284" height="58" rx="12" fill="#161b22" stroke="#30363d"/>
+    <rect x="42" y="356" width="284" height="58" rx="12" fill="var(--card)" stroke="var(--border)"/>
     <rect x="62" y="370" width="9" height="9" transform="rotate(45 66.5 374.5)" fill="#d29922"/><text x="80" y="380" font-size="12.5" font-weight="700" fill="#d29922">Concession threshold</text>
     <text x="62" y="399" font-size="10.8" class="s2">"author persistence is not evidence" — the bar</text>
     <text x="62" y="412" font-size="10.8" class="s2">rises after every concession</text>
   </g>
   <g filter="url(#soft2)">
-    <rect x="348" y="356" width="284" height="58" rx="12" fill="#161b22" stroke="#30363d"/>
+    <rect x="348" y="356" width="284" height="58" rx="12" fill="var(--card)" stroke="var(--border)"/>
     <rect x="368" y="369" width="11" height="11" rx="2" stroke="#bc8cf2" fill="none" stroke-width="1.6"/><line x1="370.5" y1="373" x2="376.5" y2="373" stroke="#bc8cf2" stroke-width="1.2"/><line x1="370.5" y1="376.5" x2="376.5" y2="376.5" stroke="#bc8cf2" stroke-width="1.2"/><text x="387" y="380" font-size="12.5" font-weight="700" fill="#bc8cf2">Commitment ledger</text>
     <text x="368" y="399" font-size="10.8" class="s2">every promised fix is audited next round:</text>
     <text x="368" y="412" font-size="9.6" class="s2">FULLY · PARTIALLY · NOT_ADDRESSED · MADE_WORSE</text>
   </g>
   <g filter="url(#soft2)">
-    <rect x="654" y="356" width="284" height="58" rx="12" fill="#161b22" stroke="#30363d"/>
+    <rect x="654" y="356" width="284" height="58" rx="12" fill="var(--card)" stroke="var(--border)"/>
     <path d="M674,379 l4,-4 l3,3 l5,-6" stroke="#3fb950" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M683,371.5 h3.5 v3.5" stroke="#3fb950" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="694" y="380" font-size="12.5" font-weight="700" fill="#3fb950">Score trajectory</text>
     <text x="674" y="399" font-size="10.8" class="s2">per-dimension deltas across rounds —</text>
     <text x="674" y="412" font-size="10.8" class="s2">hidden regressions are fed back to the author</text>
