@@ -28,7 +28,6 @@ from research_harness.registry import (
     STAGES, AUTO_PARAMS, HIDDEN_PARAMS,
     build_stage_available,
 )
-from research_harness import log as oplog
 
 
 # ═══════════════════════════════════════════
@@ -233,6 +232,57 @@ _REPEAT_WARN = 3
 _REPEAT_BREAK = 5
 
 
+# ═══════════════════════════════════════════
+# conclusion — LLM reports what the research run accomplished
+# ═══════════════════════════════════════════
+
+def _conclusion(task: str, history: list, completed: bool, runtime: Runtime) -> str:
+    """Have the LLM write a short report of what the research run did.
+
+    Reads the per-stage history (which functions ran in which stage) and
+    answers the user's task: what was done, what was produced, where the
+    artifacts are. Returns a plain-text report.
+    """
+    from research_harness.utils import parse_json
+
+    lines = []
+    for h in history:
+        stage = h.get("stage", "?")
+        if stage == "done":
+            continue
+        sub = h.get("sub_task", "")
+        calls = "; ".join(
+            f"{s.get('call', '?')}={'OK' if s.get('success') else 'FAIL'}"
+            for s in h.get("steps", [])
+        )
+        lines.append(f"- [{stage}] {sub}: {calls}")
+    trace = "\n".join(lines) if lines else "(no stages executed)"
+
+    status = "completed" if completed else "stopped before an explicit done signal"
+    context = (
+        f"<original_user_task>{task}</original_user_task>\n\n"
+        f"(Internal run status — DO NOT mention raw status words in the report: "
+        f"{status})\n\n"
+        f"Stages executed and the functions each ran:\n{trace}\n\n"
+        "Your job: write a `summary` that reports what this research run "
+        "ACCOMPLISHED for the user's task. Cover: which stages ran, what "
+        "concrete artifacts were produced (files, drafts, search results), "
+        "and where they live (cite paths if the trace shows file writes). "
+        "If the run produced a deliverable, name it. Be specific and "
+        "grounded in the trace — do not invent results that aren't there.\n\n"
+        "Reply with ONLY this JSON object:\n"
+        '{"summary": "<what the run accomplished>", '
+        '"success": true, "issues": "any problems, or null"}'
+    )
+
+    reply = runtime.exec(content=[{"type": "text", "text": context}])
+    try:
+        parsed = parse_json(reply)
+        return parsed.get("summary", reply)
+    except Exception:
+        return reply[:1000]
+
+
 @agentic_function(
     as_tool=True,
     toolset=("harness",),
@@ -251,7 +301,6 @@ def research_agent(
     task: str,
     runtime: Runtime = None,
     review_runtime: Runtime = None,
-    log_file: str = None,
 ) -> dict:
     """Autonomous research agent with two-level control.
 
@@ -261,14 +310,12 @@ def research_agent(
     functions run on a different model from the executor (ARIS-style
     adversarial reviewer). The runtime's working directory must be set
     before calling — every shell command and file write runs with that
-    as cwd. When log_file is provided, every stage pick and function
-    call is appended to it (operation log). Returns a dict with task,
-    success, stages_completed, history.
+    as cwd. Returns a dict with task, success, summary,
+    stages_completed, history.
     """
     if runtime is None:
         raise ValueError("research_agent() requires a runtime argument")
 
-    oplog.log_session(log_file, task)
     history = []
     progress_parts = []
 
@@ -280,7 +327,6 @@ def research_agent(
         if stage_decision.get("done"):
             reasoning = stage_decision.get('reasoning', '')[:80]
             print(f"  [stage {stage_num}] DONE: {reasoning}", file=sys.stderr)
-            oplog.log_done(log_file, reasoning)
             history.append({"stage_num": stage_num, "stage": "done", "decision": stage_decision})
             break
 
@@ -294,7 +340,6 @@ def research_agent(
             continue
 
         print(f"  [stage {stage_num}] → {stage}: {reasoning[:80]}", file=sys.stderr)
-        oplog.log_stage(log_file, stage_num, stage, sub_task)
 
         # Level 2: Execute within stage
         stage_context_parts = []
@@ -315,7 +360,6 @@ def research_agent(
             args_summary = step_result.get("args_summary", "")
 
             print(f"    [{stage}/{step_num}] {call}: {'OK' if success else 'FAIL'}", file=sys.stderr)
-            oplog.log_step(log_file, str(call), args_summary, success, result_preview)
 
             stage_history.append(step_result)
             stage_context_parts.append(f"  {call} → {result_preview}")
@@ -342,10 +386,6 @@ def research_agent(
                     f"identical args {repeat_count} times — ending stage.",
                     file=sys.stderr,
                 )
-                oplog.append(
-                    log_file,
-                    f"- repetition guard: `{call}` x{repeat_count} — stage cut off\n",
-                )
                 break
 
         # Summarize stage progress
@@ -369,9 +409,16 @@ def research_agent(
         for h in history
     )
 
+    try:
+        summary = _conclusion(task, history, completed, runtime)
+    except Exception as e:
+        print(f"  [conclusion] ERROR: {e}", file=sys.stderr)
+        summary = ""
+
     return {
         "task": task,
         "success": completed,
+        "summary": summary,
         "stages_completed": len(history),
         "history": history,
     }
@@ -467,7 +514,6 @@ def main():
         task=task,
         runtime=rt,
         review_runtime=review_rt,
-        log_file=os.path.join(work_dir, "OPERATION_LOG.md"),
     )
 
     # Report
